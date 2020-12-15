@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caliz</title>
+    <%-include ('partials/estilo.html'); %>
+</head>
+<body>
+    <%-include ('partials/navigation.html'); %>
+    <h1> El gran cuarto de pruebas</h1>
+    <h3>Felicidades funciona lo más básico de Node</h3>
+    <%= 5+5 %>
+    <a href="/otra">Redirección</a><br>
+    <a href="formulario"> Prueba de Formulario</a>
+    <h3>Imagen cargada desde la carpeta public:</h3><br>
+    <img src="/img/hapy.jpeg" alt="Perrito de la Victoria">
+
+    <%-include ('partials/navigation.html'); %>
+    <h1>Ya puedes ver otra vista</h1>
+    <h2>Variables:</h2>
+    <h4>Cargada dinámica: <%= dinamico%></h4>
+</body>
+</html>
