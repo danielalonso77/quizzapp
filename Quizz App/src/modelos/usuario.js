@@ -16,7 +16,8 @@ var modeloUsuario = Schema ({
     apPaterno: {type: 'String'},
     apMaterno: {type: 'String'},
     correoElectronico:{type: 'String'},
-    telefono: {type: 'String'}
+    telefono: {type: 'String'},
+   // timestamps: true
     
 });
 

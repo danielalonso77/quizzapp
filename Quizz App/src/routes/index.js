@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 //----M O D E L O S-----//
 const Usuario=require('../modelos/usuario.js');
-
+const Quizz=require('../modelos/quizz.js');
 
 
 // ------------||  R U T A S  ||----------------//
@@ -16,7 +16,7 @@ const Usuario=require('../modelos/usuario.js');
 router.get('/',(req,res)=>{
     res.render('index');
 
- })
+ });
 
 
 //---------ADMINISTRADORES
@@ -115,7 +115,29 @@ router.get('/editores/aprobar',(req,res)=>{
 
 router.get('/editores/crear',(req,res)=>{
    res.render('editor/crear');
+   
+});
 
+router.post('/editores/crear',(req,res)=>{
+  console.log(req.body);
+
+  Quizz.create( 
+     {
+      claveMateria: "español",
+      nombreQuizz: req.body.nombreQuizz,
+         cuestionario:[
+         {
+            tipo: "tipoT",
+            pregunta: req.body.pregunta1,
+            respuesta: req.body.respuesta1
+         }
+          ]
+      
+      }
+   
+   );
+
+  res.redirect("/editores/crear");
 });
 
 router.get('/editores/editar',(req,res)=>{
