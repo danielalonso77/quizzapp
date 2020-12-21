@@ -14,6 +14,7 @@ var modeloQuizz = Schema ({
 
     claveMateria:{type: String},
     nombreQuizz:{type: String},
+    estado:{type: 'String', enum:['revisado','por revisar'], default:"por revisar"},
     cuestionario:[cuestionario]
 });
 

@@ -8,6 +8,31 @@
 <body>
     <h1>Vista para realizar los examenes</h1>
     <p>Contendrá un molde de los examenes creados para que los contesten los alumnos</p>
+  
+
+        <h1><%= quizz.nombreQuizz %></h1>
+            <form action="#">
+
+           <% 
+                for(var i=0; i<quizz.cuestionario.length ; i++)
+                    {%>
+                        <% switch (quizz.cuestionario[i].tipo) {
+                            case "tipoT" : %>
+                            <h4><%= quizz.cuestionario[0].pregunta %></h4>
+                            <input type="text" name="respuesta1">
+                                    <% break;
+                            
+                            
+                            
+                            } 
+                          %>
+                    <% } 
+           %>
+
+
+              <input type="submit" value="Enviar Respuestas">
+            </form>
+    
     <a href="/alumnos/respuestas">Enviar respuestas</a>
 </body>
 </html>

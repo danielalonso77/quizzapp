@@ -173,20 +173,32 @@ router.get('/docentes/resultados',(req,res)=>{
 
 //----Alumnos------------------
 
-router.get('/alumnos',(req,res)=>{
-   res.render('alumnos/index');
+router.get('/alumnos',async (req,res)=>{
+   const Quizzes=await Quizz.find({_id: "5fe1041672e48e0edcaf94ab" });
+   res.render('alumnos/index',{quizzes: Quizzes});
 
 });
+
+
 
 router.get('/alumnos/registro',(req,res)=>{
    res.render('alumnos/registro');
 
 });
 
-router.get('/alumnos/examen',(req,res)=>{
-   res.render('alumnos/examen');
+router.get('/alumnos/examen/:id',async(req,res)=>{
+   const quizz=await Quizz.findById(req.params.id);
+   res.render('alumnos/examen',{quizz});
 
 });
+
+/*
+router.get('/administrador/editar/:id',async(req,res)=>{
+   const user=await Usuario.findById(req.params.id);
+
+   res.render('administrador/editar',{user});
+ 
+}); */
 
 router.get('/alumnos/respuestas',(req,res)=>{
    res.render('alumnos/respuestas');
