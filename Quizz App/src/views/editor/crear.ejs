@@ -59,7 +59,7 @@
 </div>   
 
     <!--enctype="multipart/form-data"-->
-    <form action="/editores/crear"  id="formularioQuizz" method="POST">
+    <form action="/editores/crear"  id="formularioQuizz" method="POST" align="center">
         <br>
         <br>
         Nombre del Quizz:
@@ -70,19 +70,20 @@
        <div id="insercion">
             <div class="tipoT">
                 <div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">Pregunta</label>
-  <input type="text" class="form-control" id="pregunta" placeholder="Escriba la pregunta">
-</div>
-<div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Respuesta</label>
-  <input type="text" class="form-control" id="respuesta" placeholder="Escriba la respuesta">
-</div>
+                  <label for="formGroupExampleInput" class="form-label">Pregunta</label>
+                  <input type="text" class="form-control" id="pregunta" placeholder="Escriba la pregunta">
+                </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Respuesta</label>
+                <input type="text" class="form-control" id="respuesta" placeholder="Escriba la respuesta">
             </div>
             <div class="editar" role="group" aria-label="Basic mixed styles example">
-         <br>
-            <button type="button" class="btn btn-success" onclick="preguntaAbierta()">Agregar Pregunta</button>
+              <br>
+              <button type="button" class="btn btn-success" onclick="preguntaAbierta()">Agregar Pregunta</button>
  
-            <button type="button" class="btn btn-danger">Quitar Pregunta</button>
+              <button type="button" class="btn btn-danger">Quitar Pregunta</button>
+            </div>
+          </div>
        </div>
         
     </form>
