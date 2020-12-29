@@ -121,21 +121,37 @@ router.get('/editores/crear',(req,res)=>{
 router.post('/editores/crear',(req,res)=>{
   console.log(req.body);
 
-  Quizz.create( 
-     {
-      claveMateria: "español",
-      nombreQuizz: req.body.nombreQuizz,
-         cuestionario:[
-         {
-            tipo: "tipoT",
-            pregunta: req.body.pregunta1,
-            respuesta: req.body.respuesta1
-         }
-          ]
-      
-      }
-   
-   );
+  var i;
+  //variable para construir el cuestionario como un array
+  var cuestionario= [
+  ];
+
+
+  for (i = 0; i < req.body.numeroPreguntas; i++) {
+     var tipo="tipo"+(i+1);
+     var pregunta="pregunta"+(i+1);
+     var respuesta="respuesta"+(i+1);
+
+     //Construcción de documentos de cuestionarios de manera iterativa
+     var contenidoCuestionario={
+        tipo:req.body[tipo],
+        pregunta:  req.body[pregunta],
+        respuesta: req.body[respuesta]
+     }
+
+     cuestionario.push(contenidoCuestionario);
+  } 
+  
+   //guardado en la BD
+   Quizz.create( 
+      {
+       claveMateria: "pruebaCuestionarioEstilizado",
+       nombreQuizz: req.body.nombreQuizz,
+          cuestionario:cuestionario
+       
+       }
+    
+    );
 
   res.redirect("/editores/crear");
 });
@@ -174,7 +190,7 @@ router.get('/docentes/resultados',(req,res)=>{
 //----Alumnos------------------
 
 router.get('/alumnos',async (req,res)=>{
-   const Quizzes=await Quizz.find({_id: "5fe1041672e48e0edcaf94ab" });
+   const Quizzes=await Quizz.find({ });
    res.render('alumnos/index',{quizzes: Quizzes});
 
 });
@@ -192,13 +208,7 @@ router.get('/alumnos/examen/:id',async(req,res)=>{
 
 });
 
-/*
-router.get('/administrador/editar/:id',async(req,res)=>{
-   const user=await Usuario.findById(req.params.id);
 
-   res.render('administrador/editar',{user});
- 
-}); */
 
 router.get('/alumnos/respuestas',(req,res)=>{
    res.render('alumnos/respuestas');

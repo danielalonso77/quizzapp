@@ -68,22 +68,23 @@
         <br>
        <!-- Inserto de nuevas preguntas-->
        <div id="insercion">
-            <div class="tipoT">
-                <div class="mb-3">
-                  <label for="formGroupExampleInput" class="form-label">Pregunta</label>
-                  <input type="text" class="form-control" id="pregunta" placeholder="Escriba la pregunta">
-                </div>
-            <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Respuesta</label>
-                <input type="text" class="form-control" id="respuesta" placeholder="Escriba la respuesta">
-            </div>
-            <div class="editar" role="group" aria-label="Basic mixed styles example">
-              <br>
-              <button type="button" class="btn btn-success" onclick="preguntaAbierta()">Agregar Pregunta</button>
- 
-              <button type="button" class="btn btn-danger">Quitar Pregunta</button>
-            </div>
-          </div>
+            <div class="tipoT cuestionario">
+                    <div class="mb-3">
+                      <label for="formGroupExampleInput" class="form-label">Pregunta</label>
+                      <input type="text" class="form-control pregunta"  placeholder="Escriba la pregunta">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput2" class="form-label">Respuesta</label>
+                        <input type="text" class="form-control respuesta "  placeholder="Escriba la respuesta">
+                    </div>
+                    <!--Botones -->
+                  <div class="editar" role="group" aria-label="Basic mixed styles example">
+                    <br>
+                    <button type="button" class="btn btn-success" onclick="preguntaAbierta()">Agregar Pregunta</button>
+      
+                    <button type="button" class="btn btn-danger" onclick="eliminar(this)">Quitar Pregunta</button>
+                  </div>
+              </div>
        </div>
         
     </form>
@@ -92,7 +93,6 @@
             <button type="button" class="btn btn-primary" onclick="envioQuizz()">Crear Quizz</button>
         </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
     <script src="/js/creadorQuizzes.js" type="text/javascript"></script> 
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
