@@ -1,4 +1,4 @@
-@media (min-width: 768px){
+@media (max-width: 480px){
 img{
 width: 50%;
 }
@@ -142,9 +142,16 @@ span.psw {
   margin: 5px;
   padding: 5px;
 }
-.examen img{
-  max-width: 100%;
+.Enviar{
+  float: right;
 }
+.examen{
+  justify-content: center;
+
+
+}
+
+
 
 }
 
