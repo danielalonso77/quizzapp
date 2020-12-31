@@ -204,7 +204,22 @@ router.get('/alumnos/registro',(req,res)=>{
 
 router.get('/alumnos/examen/:id',async(req,res)=>{
    const quizz=await Quizz.findById(req.params.id);
-   res.render('alumnos/examen',{quizz});
+
+   { for(var i=0;i<quizz.cuestionario.length;i++)
+      if(quizz.cuestionario[i].tipo=="tipoR"){
+      /*
+         var preguntas=quizz.cuestionario[0].pregunta.split(",");
+         var respuestas=quizz.cuestionario[0].respuesta.split(",");
+         */
+
+      var preguntas=quizz.cuestionario[i].pregunta;
+      var respuestas=quizz.cuestionario[i].respuesta;
+      }
+   }
+
+   console.log(preguntas);
+   console.log(respuestas);
+    res.render('alumnos/examen',{quizz,preguntas:preguntas,respuestas:respuestas});
 
 });
 

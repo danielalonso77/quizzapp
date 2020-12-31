@@ -1,13 +1,11 @@
-
 //Variable para hacer la inserción de elementos dentro del cuertpo del HTML
 var insertor=document.getElementById("insercion");
-//Variable global para "enumerar" todas las preguntas de un cuestionario
-var contador=0;
+//Variable global para "enumerar" todas las preguntas,respuestas y tipo  de un cuestionario
+var contador=1;
 
 
 //Función para nombrar los tipos de preguntas, y agregarles un contador para que no se pierdan en la request
 function contadorTipo(){
-    contador=contador+1;
     tipo="tipo"+contador;
 
      //Creación de un elemento hidden para registrar el tipo de pregunta
@@ -130,10 +128,32 @@ function preguntaAbierta(){
        
 } 
 
+function envioPreguntaRelacional(){
 
-function eliminar(obj){
-    obj.parentElement.parentElement.remove();
+  var i=0;
+  var cuestionarios=document.getElementsByClassName("tipoR");
+
+  for(i=0;i<cuestionarios.length;i++){
+
+    var tipoHTML=contadorTipo();
+    //Definición del tipo de pregunta
+    tipoHTML.value="tipoR";
+    //inserción
+    cuestionarios[i].appendChild(tipoHTML);
+
+    var pregunta = cuestionarios[i].querySelectorAll("div.contenedorItem input.pregunta");
+    pregunta[0].name="pregunta"+contador;
+
+    var respuesta = cuestionarios[i].querySelectorAll("div.contenedorItem input.respuesta");
+    respuesta[0].name="respuesta"+contador;
+    
+    contador=contador+1;
+  }
+ 
 }
+
+
+
 
 //Función para un envío clasificado de los tipos de preguntas
 function envioPreguntaAbierta(){
@@ -154,17 +174,21 @@ function envioPreguntaAbierta(){
     cuestionarios[i].appendChild(tipoHTML);
     
     var pregunta = cuestionarios[i].querySelectorAll("input.pregunta");
-    pregunta[0].name="pregunta"+(i+1);
+    pregunta[0].name="pregunta"+contador;
 
     var respuesta = cuestionarios[i].querySelectorAll("input.respuesta");
-    respuesta[0].name="respuesta"+(i+1);
+    respuesta[0].name="respuesta"+contador;
  
-
+    contador=contador+1;
     }
 
     
 }
 
+
+function eliminar(obj){
+  obj.parentElement.parentElement.remove();
+}
 
 
 // Envío Final de todos los elementos
@@ -180,6 +204,7 @@ function envioQuizz(){
 
      //Envío de tipos de preguntas
     envioPreguntaAbierta();
+    envioPreguntaRelacional();
     document.getElementById("formularioQuizz").submit();
     
 }
