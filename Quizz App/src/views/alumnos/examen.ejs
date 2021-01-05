@@ -49,7 +49,7 @@
                     {%>
                         <% switch (quizz.cuestionario[i].tipo) {
                             case "tipoT" : %>
-                            <h4 align="center"><%= quizz.cuestionario[i].pregunta %></h4>
+                            <h4><%= quizz.cuestionario[i].pregunta %></h4>
                             <input type="text" class="form-control" placeholder="Respuesta" aria-label="Respuesta" name="respuesta1">
                             <br>
                                     <% break;
@@ -60,34 +60,34 @@
                                     <div id="main">
                                         <table class="tablaEjercicio">
                                             <tr>
-                                                <!-- <td class="contestada">1.	Motivo por el cual Marx critica la propuesta dialéctica de Hegel: </td> -->
+                                                <!-- <td class="contestada">1.  Motivo por el cual Marx critica la propuesta dialéctica de Hegel: </td> -->
                                                 <td>1.<%= preguntas %></td>
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta"><%= respuestas %></td>
                                             </tr>
                                             <tr>
-                                                <!-- <td class="activa">2.	Ejemplo de síntesis del proceso histórico: </td> -->
-                                                <td>2.	Ejemplo de síntesis del proceso histórico: </td>
+                                                <!-- <td class="activa">2.  Ejemplo de síntesis del proceso histórico: </td> -->
+                                                <td>2.  Ejemplo de síntesis del proceso histórico: </td>
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta">Sociedad sin clases</td>
                                             </tr>
                                             <tr>
-                                                <td>3.	Para Marx, el capital es: </td>
+                                                <td>3.  Para Marx, el capital es: </td>
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta">Fuerza social</td>
                                             </tr>
                                             <tr>
-                                                <td>4.	Acción que posibilita el valor de un bien: </td>
+                                                <td>4.  Acción que posibilita el valor de un bien: </td>
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta">Trabajo</td>
                                             </tr>
                                             <tr>
-                                                <td>5.	Determina el valor de los bienes: </td>
+                                                <td>5.  Determina el valor de los bienes: </td>
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta">Tiempo socialmente necesario</td>
                                             </tr>
                                             <tr>
-                                                <td>6.	Actor fundamental para Marx, ya que difundió la ideología de una época: </td>
+                                                <td>6.  Actor fundamental para Marx, ya que difundió la ideología de una época: </td>
                                                 <!-- <td class="boton contestada"><button></button></td> -->
                                                 <td class="boton"><button></button></td>
                                                 <td class="celdaRespuesta">Estado burgués</td>
@@ -118,16 +118,16 @@
                     <% } 
            %>
 
-                    <h4 align="center"><%= quizz.cuestionario[0].pregunta %></h4>
+                    <h4><%= quizz.cuestionario[0].pregunta %></h4>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
+                                <label style="border:2px solid DodgerBlue;" class="form-check-label" for="flexRadioDefault1">
                                  Opcion 1
                                 </label>
                             </div>
                             <div class="form-check">
                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <label style="border:2px solid DodgerBlue;" class="form-check-label" for="flexRadioDefault2">
                                 Opcion 2
                                 </label>
                             </div>
