@@ -6,8 +6,8 @@ const Schema= mongoose.Schema;
 
 const cuestionario=Schema({
     tipo:{type: 'String'},
-    pregunta:{type: 'String'},
-    respuesta:{type: 'String'}
+    pregunta: Array,
+    respuesta: Array
 });
 
 var modeloQuizz = Schema ({
