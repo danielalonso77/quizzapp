@@ -102,7 +102,7 @@ function preguntaAbierta(){
   botonQuitar.type="button";
   botonQuitar.className="btn btn-danger";
   botonQuitar.addEventListener("click", function(){ eliminar(this); });
-  // element.addEventListener("click", function(){ myFunction(p1, p2); }); 
+
   var textoQuitar = document.createTextNode("Quitar Pregunta");
   botonQuitar.appendChild(textoQuitar);
 
@@ -128,6 +128,131 @@ function preguntaAbierta(){
        
 } 
 
+function preguntaRelacional(){
+
+  var strVar="";
+strVar += "  <div class=\"tipoR cuestionario\">";
+strVar += "                <div class=\"row\">";
+strVar += "                    <div class=\"col-lg-8 col-md-12 col-sm-12 \">";
+strVar += "                        <section class=\"panel \" style=\"background-color:  #ccffdc;\">";
+strVar += "                            <div class=\"panel-body\"><h4 class=\"text-center\">Pregunta Relacional<\/h4><\/div>";
+strVar += "                        <\/section>";
+strVar += "                    <\/div>";
+strVar += "                    <div class=\"row contenedorItem\">";
+strVar += "                      <div class=\"row\">";
+strVar += "                          <div class=\"col-lg-5 col-md-6 col-sm-6\">";
+strVar += "                              <section class=\"panel\">";
+strVar += "                                  <input type=\"text\" class=\"form-control pregunta \"  placeholder=\"Pregunta\">";
+strVar += "                              <\/section>";
+strVar += "                          <\/div>";
+strVar += "                          <div class=\"col-lg-5 col-md-6 col-sm-6\">";
+strVar += "                              <section class=\"panel\">";
+strVar += "                                  <input type=\"text\" class=\"form-control respuesta \"  placeholder=\"Respuesta\">";
+strVar += "                              <\/section>";
+strVar += "                          <\/div>";
+strVar += "                          <div class=\"col-lg-2 col-md-6 col-sm-6\">";
+strVar += "                            <section class=\"panel\">";
+strVar += "                              <button class=\"btn btn-danger \" type=\"button\" onclick=\"quitarReactivoRelacional(this)\">QuitarReactivo<\/button>";
+strVar += "                            <\/section>";
+strVar += "                          <\/div>";
+strVar += "                      <\/div>";
+strVar += "                    <\/div>";
+strVar += "                    <section class=\"panel\">";
+strVar += "                      <button class=\"btn btn-info \" type=\"button\" onclick=\"reactivoRelacional(this)\">Añadir Reactivo<\/button>";
+strVar += "                    <\/section>";
+strVar += "                <\/div>";
+
+insertor.insertAdjacentHTML("beforeend",strVar);
+}
+//función para crear más reactivos en preguntas relacionales
+function reactivoRelacional(obj){
+      //Extración del Div donde se inyectará el nuevo reactivo
+      var contenedorCuestionario=obj.parentElement.previousElementSibling;
+      //.parentElement.parentElement.parentElement;
+
+      /*
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <section class="panel">
+                                    <input type="text" class="form-control pregunta "  placeholder="Pregunta">
+                                </section>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <section class="panel">
+                                    <input type="text" class="form-control respuesta "  placeholder="Respuesta">
+                                </section>
+                            </div>
+                             <div class="col-lg-2 col-md-6 col-sm-6">
+                              <section class="panel">
+                                <button class="btn btn-danger " type="button" onclick="quitarReactivoRelacional(this)">QuitarReactivo</button>
+                              </section>
+                            </div>
+      */
+    //Pregunta
+    var contenedorRelacional=document.createElement("DIV");
+    contenedorRelacional.className="row";
+
+    var preguntaRelacional=document.createElement("DIV");
+      preguntaRelacional.className="col-lg-5 col-md-6 col-sm-6";
+
+      var sectionP=document.createElement("SECTION");
+      sectionP.className="panel";
+      //Input Pregunta
+      var pregunta=document.createElement("INPUT");
+      pregunta.type="text";
+      pregunta.className="form-control pregunta"
+      pregunta.placeholder="Pregunta";
+    
+    //Respuesta
+      var respuestaRelacional=document.createElement("DIV");
+      respuestaRelacional.className="col-lg-5 col-md-6 col-sm-6";
+
+      var sectionR=document.createElement("SECTION");
+      sectionR.className="panel";
+
+      //Input Respuesta
+      var respuesta=document.createElement("INPUT");
+      respuesta.type="text";
+      respuesta.className="form-control respuesta"
+      respuesta.placeholder="Respuesta";
+
+      //Botón para eliminar
+      var contenedorBotonQuitar=document.createElement("DIV");
+      contenedorBotonQuitar.className="col-lg-2 col-md-6 col-sm-6";
+
+      var sectionB=document.createElement("SECTION");
+      sectionB.className="panel";
+
+      var botonQuitar = document.createElement("BUTTON");
+      botonQuitar.type="button";
+      botonQuitar.className="btn btn-danger";
+      botonQuitar.addEventListener("click", function(){ quitarReactivoRelacional(this); });
+
+      var textoQuitar = document.createTextNode("Quitar Reactivo");
+      botonQuitar.appendChild(textoQuitar)
+    
+    sectionB.appendChild(botonQuitar);
+    contenedorBotonQuitar.appendChild(sectionB);
+
+    sectionP.appendChild(pregunta);
+    preguntaRelacional.appendChild(sectionP);
+
+    sectionR.appendChild(respuesta);
+    respuestaRelacional.appendChild(sectionR);
+
+    contenedorRelacional.appendChild(preguntaRelacional);
+    contenedorRelacional.appendChild(respuestaRelacional);
+    contenedorRelacional.appendChild(contenedorBotonQuitar);
+
+    //Inyección de Reactivos
+    contenedorCuestionario.appendChild(contenedorRelacional);
+ 
+}
+
+function quitarReactivoRelacional(obj){
+  //Elemento que se destruirá
+  obj.parentElement.parentElement.parentElement.remove();
+}
+
 function envioPreguntaRelacional(){
 
   var i=0;
@@ -140,18 +265,26 @@ function envioPreguntaRelacional(){
     tipoHTML.value="tipoR";
     //inserción
     cuestionarios[i].appendChild(tipoHTML);
-
+    /*
     var pregunta = cuestionarios[i].querySelectorAll("div.contenedorItem input.pregunta");
     pregunta[0].name="pregunta"+contador;
 
     var respuesta = cuestionarios[i].querySelectorAll("div.contenedorItem input.respuesta");
     respuesta[0].name="respuesta"+contador;
-    
+    */
+   var reactivos=cuestionarios[i].querySelectorAll("div.contenedorItem input.pregunta");
+   for(j=0;j<reactivos.length;j++){
+    var pregunta = cuestionarios[i].querySelectorAll("div.contenedorItem input.pregunta");
+    pregunta[j].name="pregunta"+contador;
+
+    var respuesta = cuestionarios[i].querySelectorAll("div.contenedorItem input.respuesta");
+    respuesta[j].name="respuesta"+contador;
+
+   }
     contador=contador+1;
   }
  
 }
-
 
 
 
