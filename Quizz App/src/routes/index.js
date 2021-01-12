@@ -227,6 +227,10 @@ router.get('/alumnos/correccion',(req,res)=>{
 
 })
 
+ router.get('/cuartodos',(req, res)=>{
+    res.render('nuevocuarto',{mensaje:'todo bien'});
+ })
+
 
 
 

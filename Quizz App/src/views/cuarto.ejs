@@ -55,48 +55,7 @@
         function $(selector) {
             return document.querySelector(selector) 
         }
-        $("#crearPreg").addEventListener("click", ()=>{
-            var div = document.createElement("div");
-            div.id = 'divparent';
-            $("#divparent").appendChild(div);
-            console.log(div)
-            var form = document.createElement("form");
-            form.id = 'form1';
-            $("#divparent").appendChild(form);
-            console.log(form);
-            var btn = document.createElement("button");
-            btn.setAttribute("id","arr");
-            btn.type = 'button';
-            var texto = document.createTextNode("Recuadro");
-            btn.appendChild(texto);
-            btn.setAttribute("onclick","crearRecuadro()");
-            $("#divparent").appendChild(btn);
-            console.log(btn);
-            var btn1 = document.createElement("button");
-            btn1.setAttribute("id","imagenarr");
-            btn1.type = 'button';
-            var texto = document.createTextNode("Imagen");
-            btn1.appendChild(texto);
-            btn1.setAttribute("onclick","crearImagen()");
-            $("#divparent").appendChild(btn1);
-            console.log(btn1);
-            var btn2 = document.createElement("button");
-            btn2.setAttribute("id","btnbrr");
-            btn2.type = 'button';
-            var texto = document.createTextNode("Borrar");
-            btn2.appendChild(texto);
-            $("#divparent").appendChild(btn1);
-            console.log(btn1);
-            var hr = document.createElement("hr");
-            hr.setAttribute("id","hr1");
-            $("#divparent").appendChild(hr);
-            console.log(hr);
-            var hr1 = document.createElement("hr");
-            hr1.setAttribute("id","hr2");
-            $("#divparent").appendChild(hr1);
-            console.log(hr1)
-
-        })
+       
         function eliminar(obj){
             obj.remove();
 
