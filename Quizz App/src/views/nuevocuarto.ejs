@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Droppable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 400px; height: 400px; padding: 0.5em; float: left; margin: 10px; }
+  #div{float: left;  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+   
+   var div1 = document.getElementById('draggable');
+   var div2 = document.getElementById('droppable');
+   var boton = document.getElementById('crear');
+
+  $( function() {
+    $( "#draggable" ).draggable();
+    $( "#droppable" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  } );
+
+  $(document).ready(()=>{
+
+    $( "#crear" ).click(function writeHTMLasJS(){
+document.write("<div id=\"draggable\" class=\"ui-widget-content\">");
+document.write("  <p>Drag me to my target<\/p>");
+document.write("<\/div>");
+document.write(" ");
+document.write("<div id=\"droppable\" class=\"ui-widget-header\">");
+document.write("  <p>Drop here<\/p>");
+document.write("<\/div>");
+
+    });
+
+   
+
+  });
+
+ 
+
+  
+
+ 
+  </script>
+</head>
+<body>
+
+  <button id="crear"  >crear</button>
+
+ 
+<div id="draggable" class="ui-widget-content">
+  <p>Drag me to my target</p>
+</div>
+ 
+<div id="droppable" class="ui-widget-header">
+  <p>Drop here</p>
+</div>
+ 
+ 
+</body>
+</html>
