@@ -63,7 +63,6 @@
             font-family:"Helvetica", Arial, sans-serif;
             font-size:18px;
             color: #666;
-            flood-color: black;
         }
 		
         #main {
@@ -73,11 +72,10 @@
             -moz-border-radius: 8px;
             -webkit-border-radius: 8px;
             padding: 20px;
-            border: 1px dashed #99adff;
+            border: 1px dashed #EEC47B;
             -moz-box-shadow: 0 0px 0px #9c9c9c;
             -webkit-box-shadow: 0 0px 0px #9c9c9c;
 			position:relative;
-           /* background-color: #9999ff;*/
         }
         /* Extras */
         .tablaEjercicio {
@@ -130,8 +128,8 @@
         }
         table td.activa{
             background-color: white;
-            color: #3366ff;
-			border-bottom: solid 1px #4d79ff;
+            color: #88c1b2;
+			border-bottom: solid 1px #88c1b2;
 			font-weight:bolder;
         }
         table td.contestada{
@@ -142,10 +140,10 @@
             background-color: white;
         }
         table td button{
-            width: 26px;
-            height: 26px;
+            width: 60px;
+            height: 60px;
             border-radius: 30px;
-			background:#3366ff;
+			background:#88c1b2;
 			font-size: 18px;
 			color:#fff;
 			/*border:1px solid #84C1B2;*/
@@ -158,10 +156,10 @@
             border-radius: 0;
         }
         table td.boton.contestada + td{
-            background-color: #e6ecff;
+            background-color: #DFD;
         }
         td.celdaRespuesta{
-			color:#99b3ff;
+			color:#88c1b2;
 			font-weight:bolder;
         }
         td.usado{
@@ -246,8 +244,4 @@
     body.examen{
         margin: 5px;
         padding: 5px;
-        background-color: #ffd9b3;
     }
-    html h1,h2,h3,h4{
-  font-color:Black;
-}

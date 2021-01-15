@@ -291,6 +291,141 @@ function quitarReactivoRelacional(obj){
   obj.parentElement.parentElement.parentElement.remove();
 }
 
+function preguntaOM(){
+
+  var strVar="";
+  strVar += "<div class=\"tipoOM cuestionario rounded-sm border border-primary\">";
+  strVar += "                <div class=\"row\">";
+  strVar += "                   ";
+  strVar += "                        <div class=\"col-lg-12 col-md-6 col-sm-6 \">";
+  strVar += "                              <div  align=\"center\">";
+  strVar += "                                    <h3>Pregunta de Opción Múltiple<\/h3>";
+  strVar += "                                    <div class=\"col-lg-8 col-md-6 col-sm-6 pb-5 pregunta\">";
+  strVar += "                                    <input type=\"text\" class=\"form-control pregunta \"  placeholder=\"Pregunta para el alumno\">";
+  strVar += "                                    <\/div>";
+  strVar += "                              <\/div>";
+  strVar += "                              <div class=\" col-lg-12 col-md-6 col-sm-6 reactivos\"  align=\"center\">";
+  strVar += "                                    <div class=\"col pt-3 pb-3  \" >";
+  strVar += "                                      <div class=\"col\">";
+  strVar += "                                        <input type=\"text\" class=\"form-control opcion \"  placeholder=\"Opción\">";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-info\" onclick=\"seleccionarRespuesta(this)\">Correcta<\/button>";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Eliminar Opción<\/button>";
+  strVar += "                                      <\/div>";
+  strVar += "                                    ";
+  strVar += "                                    <\/div>";
+  strVar += "                                    <div class=\"col pt-3 pb-3  \" >";
+  strVar += "                                      <div class=\"col\">";
+  strVar += "                                        <input type=\"text\" class=\"form-control opcion \"  placeholder=\"Opción\">";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-info\" onclick=\"seleccionarRespuesta(this)\">Correcta<\/button>";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Eliminar Opción<\/button>";
+  strVar += "                                      <\/div>";
+  strVar += "                                    <\/div>";
+  strVar += "                                    <div class=\"col pt-3 pb-3   \" >";
+  strVar += "                                      <div class=\"col\">";
+  strVar += "                                        <input type=\"text\" class=\"form-control opcion \"  placeholder=\"Opción\">";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-info\" onclick=\"seleccionarRespuesta(this)\">Correcta<\/button>";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Eliminar Opción<\/button>";
+  strVar += "                                      <\/div>";
+  strVar += "                                    <\/div>  ";
+  strVar += "                                ";
+  strVar += "                              <\/div>";
+  strVar += "                         ";
+  strVar += "                         <\/div>";
+  strVar += "                <\/div>";
+  strVar += "                  <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+  strVar += "                    <button type=\"button\" class=\"btn btn-success\" onclick=\"reactivoOM(this)\">Agregar Reactivo<\/button>";
+  strVar += "                    <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
+  strVar += "                  <\/div>";
+  strVar += "            <\/div>";
+
+insertor.insertAdjacentHTML("beforeend",strVar);
+}
+
+//Función para la creación de una opción en preguntas de opción múltiple
+function reactivoOM(obj){
+
+  //búsqueda del div donde se inyectará el nuevo reactivo
+  var contenedor=obj.parentElement.previousElementSibling.querySelectorAll("div div.reactivos");
+  contenedor=contenedor[0];
+  var strVar="";
+  strVar += " <div class=\"col pt-3 pb-3  \" >";
+  strVar += "                                      <div class=\"col\">";
+  strVar += "                                        <input type=\"text\" class=\"form-control opcion \"  placeholder=\"Opción\">";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-info\" onclick=\"seleccionarRespuesta(this)\">Correcta<\/button>";
+  strVar += "                                      <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Eliminar Opción<\/button>";
+  strVar += "                                      <\/div>";
+  strVar += "                                    ";
+  strVar += "                                    <\/div>";
+
+  contenedor.insertAdjacentHTML("beforeend",strVar);
+
+}
+
+//Función para seleccionar las respuestas correctas de la opción múltiple
+function seleccionarRespuesta(obj){
+  // Selección del elemento a cambiar de color
+  var contenedor= obj.parentElement.parentElement;
+  
+  claseContenedor=contenedor.className;
+  //Clase con palabra clave para definir el comportamiento de la respuesta
+  
+  pivote=claseContenedor.search("bg bg-success");
+
+  if (pivote==-1){
+    contenedor.className="col pt-3 pb-3 bg bg-success";
+  }
+  else{
+    contenedor.className="col pt-3 pb-3 bg ";
+  }
+
+}
+
+function preguntaIT(){
+  var strVar="";
+strVar += "    <div class=\"container tipoIT cuestionario \">";
+strVar += "        <h4>Pregunta Texto-Imagen<\/h4>";
+strVar += "        <p>Seleccione la imagen a cargar, y defina pregunta y respuesta<\/p>";
+strVar += "        <input type=\"file\" id=\"file-upload\" accept=\"image\/*\" class=\"imagen\">";
+strVar += "        <input type=\"hidden\" class=\"imagenrequest\">";
+strVar += "        <div id=\"file-preview-zone\"  class=\"mx-auto\" align=\"center\"><\/div>";
+strVar += "        <div class=\"mb-3\">";
+strVar += "          <label for=\"formGroupExampleInput\" class=\"form-label\">Pregunta<\/label>";
+strVar += "          <input type=\"text\" class=\"form-control pregunta\"  placeholder=\"Escriba la pregunta\">";
+strVar += "        <\/div>";
+strVar += "        <div class=\"mb-3\">";
+strVar += "            <label for=\"formGroupExampleInput2\" class=\"form-label\">Respuesta<\/label>";
+strVar += "            <input type=\"text\" class=\"form-control respuesta \"  placeholder=\"Escriba la respuesta\">";
+strVar += "        <\/div>";
+strVar += "      <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+strVar += "        <br>";
+strVar += "        <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
+strVar += "      <\/div>";
+strVar += "    <\/div>";
+
+insertor.insertAdjacentHTML("beforeend",strVar);
+
+}
+
+
+function preguntaMatematicas(){
+  var strVar="";
+strVar += "    <div class=\"tipoM cuestionario\">";
+strVar += "            <h4>Pregunta de Matemáticas<\/h4>";
+strVar += "            <p>Si requiere escribir una fracción ingrese guion bajo\"_\" p. ej. 3_4 <\/p>";
+strVar += "            <div class=\"mb-3\">";
+strVar += "              <label for=\"formGroupExampleInput\" class=\"form-label\">Expresión<\/label>";
+strVar += "              <input type=\"text\" class=\"form-control pregunta\"  placeholder=\"Escriba la expresión a mostrar al alumno\">";
+strVar += "            <\/div>";
+strVar += "          ";
+strVar += "            <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+strVar += "              <br>";
+strVar += "              <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
+strVar += "            <\/div>";
+strVar += "    <\/div>";
+
+insertor.insertAdjacentHTML("beforeend",strVar);
+}
+
 function envioPreguntaRelacional(){
 
   var i=0;
@@ -356,7 +491,152 @@ function envioPreguntaAbierta(){
     
 }
 
+function envioPreguntaOM(){
 
+  var i=0;
+    //Rastreo del div por su clase, que define el tipo de pregunta
+    var cuestionarios=document.getElementsByClassName("tipoOM");
+
+    for(i=0;i<cuestionarios.length;i++){
+    
+     
+      
+      //Selección de la pregunta que aparecerá para el alumno
+      var pregunta = cuestionarios[i].querySelectorAll("div.pregunta input.pregunta");
+      pregunta[0].name="pregunta"+contador;
+
+      //Recolección de las opciones a mostrar
+      var reactivos=cuestionarios[i].querySelectorAll("div.reactivos input.opcion");
+
+      for(j=0;j<reactivos.length;j++){
+      reactivos[j].name="pregunta"+contador;
+      }
+
+      //Recolección de la(s) respuesta(s)
+      var respuesta = cuestionarios[i].querySelectorAll("div.bg-success input.opcion");
+      for(k=0;k<respuesta.length;k++){
+        //Creacción de elementos hidden para el envío de la(s) respuesta(s)
+        var respuestaHTML=document.createElement("INPUT");
+        respuestaHTML.type="hidden";
+        respuestaHTML.name="respuesta"+contador;
+        respuestaHTML.value=respuesta[k].value;
+
+        cuestionarios[i].appendChild(respuestaHTML);
+
+        }
+        
+         //Se agrega el tipo de pregunta por medio de un elemento hidden
+      var tipoHTML=contadorTipo();
+      //Definición del tipo de pregunta
+      tipoHTML.value="tipoOM";
+      //inserción
+      cuestionarios[i].appendChild(tipoHTML);
+
+    
+      contador=contador+1;
+      }
+}
+
+function envioPreguntaIT(){
+   
+  var i=0;
+  //Rastreo del div por su clase, que define el tipo de pregunta
+  var cuestionarios=document.getElementsByClassName("tipoIT");
+  
+  
+  //Clasificación de los elementos enviados para no tener conflictos en la request
+  for(i=0;i<cuestionarios.length;i++){
+  
+  //Se agrega el tipo de pregunta por medio de un elemento hidden
+  var tipoHTML=contadorTipo();
+  //Definición del tipo de pregunta
+  tipoHTML.value="tipoIT";
+  //inserción
+  cuestionarios[i].appendChild(tipoHTML);
+  
+  //Captura de la imagen
+  var imagen = cuestionarios[i].querySelectorAll("input.imagen");
+  imagen[0].name="imagenes";
+
+    //Creación de un espacio en blanco en un array para enviar el id de la imagen
+  var imagenHTML = cuestionarios[i].querySelectorAll("input.imagenrequest");
+  imagenHTML[0].name="pregunta"+contador;
+  imagenHTML[0].value="";
+
+  var pregunta = cuestionarios[i].querySelectorAll("input.pregunta");
+  pregunta[0].name="pregunta"+contador;
+
+  
+
+  var respuesta = cuestionarios[i].querySelectorAll("input.respuesta");
+  respuesta[0].name="respuesta"+contador;
+
+  contador=contador+1;
+  }
+
+  
+}
+
+function envioPreguntaMate(){
+   
+  var i=0;
+  //Rastreo del div por su clase, que define el tipo de pregunta
+  var cuestionarios=document.getElementsByClassName("tipoM");
+  
+  
+  //Clasificación de los elementos enviados para no tener conflictos en la request
+  for(i=0;i<cuestionarios.length;i++){
+  
+  //Se agrega el tipo de pregunta por medio de un elemento hidden
+  var tipoHTML=contadorTipo();
+  //Definición del tipo de pregunta
+  tipoHTML.value="tipoM";
+  //inserción
+  cuestionarios[i].appendChild(tipoHTML);
+  
+ 
+
+
+  var pregunta = cuestionarios[i].querySelectorAll("input.pregunta");
+  pregunta[0].name="pregunta"+contador;
+
+  
+
+
+  contador=contador+1;
+  }
+
+  
+}
+
+
+function readFile(input){
+  if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = (e)=>{
+          var filePreview = document.createElement("img");
+          filePreview.setAttribute("width","460");
+          filePreview.setAttribute("height","345");
+         /*  filePreview.setAttribute("ondragenter","dragEnter(event)");
+          filePreview.setAttribute("ondraleave","dragLeave(event)");
+          filePreview.setAttribute("ondragover","allowDrop(event)");
+          filePreview.setAttribute("ondrop","drop(event)");
+          filePreview.setAttribute("ondragstart","drag(event)");*/
+          filePreview.id = 'file-preview';
+          filePreview.src = e.target.result;
+          console.log(e.target.result);
+          var previewZone = document.getElementById('file-preview-zone');
+          previewZone.appendChild(filePreview);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+  var fileUpload = document.getElementById('file-upload');
+  fileUpload.onchange = (e)=>{
+      readFile(e.srcElement);
+  }
+
+ 
 function eliminar(obj){
   obj.parentElement.parentElement.remove();
 }
@@ -376,6 +656,9 @@ function envioQuizz(){
      //Envío de tipos de preguntas
     envioPreguntaAbierta();
     envioPreguntaRelacional();
+    envioPreguntaOM();
+    envioPreguntaIT();
+    envioPreguntaMate();
     document.getElementById("formularioQuizz").submit();
     
 }
