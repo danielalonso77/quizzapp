@@ -157,79 +157,43 @@ router.get('/editores/crear',(req,res)=>{
    
 });
 
-router.post('/upload', upload.single('file'), (req, res) => {
-  res.json({ file: req.file.id });
-
- //res.redirect('/cuarto');
-});
-
-router.post('/editores/crear',upload.single('imagenes'),(req,res)=>{
-  console.log(req.body);
-  /*
-  console.log("Error de Multer");
-  res.json({ files: req.files });
-  */
- res.json({ files: req.file });
- // router.post('/editores/crear',(req,res)=>{
-/*
-    var imagenes=[];
-    var nimagenes=0;
 
 
-      if( req.body.imagenes.length>1){
-        for (i = 0; i < req.body.imagenes.length; i++){
-            console.log( req.body.imagenes[i]);
-          var conversor={name: req.body.imagenes[i]};
-        
-          imagenes.push(conversor);
-        } 
-      }
-    
-      upload.array(imagenes);
-      console.log(req.files);
-      */
-    /*
-    for (i = 0; i < req.body.numeroPreguntas; i++) {
-      var tipo="tipo"+(i+1);
-      if (req.body[tipo]=="TipoIT"){
-        var conversor={ name: }
-      }
-    }
-    */
-  //res.json({ file: req.body.imagenes });
-  //console.log(req.files);
- // req.body.pregunta1[0]=req.file.filename;
-  //res.json(  req.body.pregunta1 );
- 
+router.post('/editores/crear',upload.array('imagenes'),(req,res)=>{
+ 	var contadorImagenes=0;
+
   var i;
   //variable para construir el cuestionario como un array
   var cuestionario= [
   ];
 
-
+//Procesamiento de cada pregunta por la request
   for (i = 0; i < req.body.numeroPreguntas; i++) {
-     var tipo="tipo"+(i+1);
-     var pregunta="pregunta"+(i+1);
-     var respuesta="respuesta"+(i+1);
+      var tipo="tipo"+(i+1);
+      var pregunta="pregunta"+(i+1);
+      var respuesta="respuesta"+(i+1);
 
-     
+      //filtro para relacionar preguntas e imágenes
         if (req.body[tipo]=="tipoIT"){
-          console.log("ACTIVADO");
-          var preguntaImagen=req.body[pregunta];
-          preguntaImagen[0]=req.file.filename;
-          console.log( req.body[pregunta]);
-       // console.log(req.file.filename);
-    // req.body.pregunta1[0]=
-   
-      }
- 
 
-     //Construcción de documentos de cuestionarios de manera iterativa
-     var contenidoCuestionario={
+          //apertura de un espacio en el array de preguntas
+          var preguntaImagen=req.body[pregunta];
+          //asignación de un archivo en ese primer espacio
+          preguntaImagen[0]=req.files[contadorImagenes].filename;
+          //Movimiento del contador para asignar correctamente imagenes.
+          contadorImagenes=contadorImagenes+1;
+   
+
+      }
+
+
+      //Construcción de documentos de cuestionarios de manera iterativa
+      var contenidoCuestionario={
         tipo:req.body[tipo],
         pregunta:  req.body[pregunta],
         respuesta: req.body[respuesta]
-     }
+      }
+
      
   
 
@@ -250,7 +214,6 @@ router.post('/editores/crear',upload.single('imagenes'),(req,res)=>{
     );
        
   res.redirect("/editores/crear");
-  
 });
 
 

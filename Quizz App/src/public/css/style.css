@@ -1,6 +1,9 @@
-@media (max-width: 480px){
+@media (min-width: 720px){
 img{
 width: 50%;
+}
+html h1,h2,h3,h4{
+  font-color:Black;
 }
 .grid-contenedor{
   display:flex;
@@ -8,8 +11,10 @@ width: 50%;
   margin:50px;
 
 }
+
 body {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , Helvetica, sans-serif;}
 * {box-sizing: border-box;}
+
 /* Full-width input fields */
 
 
@@ -145,11 +150,12 @@ span.psw {
 .Enviar{
   float: right;
 }
-.examen{
+body.examen{
   justify-content: center;
-
+  
 
 }
+
 
 
 
