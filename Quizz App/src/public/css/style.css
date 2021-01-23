@@ -160,6 +160,33 @@ body.examen{
 
 
 }
+#div10, #div11, .droptarget, .dropnot {
+  float: left;
+  width: 100px;
+  height: 35px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+        #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+        #droppable { width: 350px; height: 600px; padding: 0.5em; float: left; margin: 10px; }
+        #div{float: left;  }
+
+        #divImg {
+              background-image:url('');
+              background-size:cover;
+              background-position: center;
+              height: 350px; width: 600px;
+              border: 1px solid #bbb;
+               }
+        #correcto, #incorrecto{
+            background-color: aliceblue;
+            background-size:cover;
+            color: red;
+            background-position: center;
+            height: 33px; width: 81px;
+            border: 1px solid #bbb;
+        }
 
 
 

@@ -121,15 +121,75 @@ function preguntaAbierta(){
   contenedor.appendChild(divInput2);
   contenedor.appendChild(contenedorBotones);
 
-    insertor.appendChild(contenedor);
+  insertor.appendChild(contenedor);
   
 
 
        
 } 
 
-function preguntaRelacional(){
+//pregunta arrastrable//
+function readURL(event){
+  var getImagePath = URL.createObjectURL(event.target.files[0]);
+  $('#divImg').css('background-image', 'url(' + getImagePath + ')');
+  $("#divImg").draggable();
+  $( "#divImg" ).droppable({
+      drop: function( event, ui ) {
+      $( this )
+      .addClass( "ui-state-highlight" );
+      }
+      });
+  }
+  function crearRecuadroCorrecto(){
+    $( "#correcto2" ).draggable();
+    var texto = $("#text1").val();
+    $("#correcto2").text(texto);
 
+    }
+    function crearImagen(){
+      $( "#correcto" ).draggable();
+      if ($("#size").val()=="chico") {
+          $("#correcto").css({"width":"50","heigth":"90"});
+      }else if ($("#size").val()=="mediano"){
+          $("#correcto").css({"width":"90","heigth":"150"});
+      }else if ($("#size").val()=="grande"){
+          $("#correcto").css({"width":"150","heigth":"300"});
+      }
+      }
+
+      function preguntaArrastrar() {
+        var strVar="";
+      strVar += "<div class=\"cuestionario tipo \" >"
+      strVar += "<label for=\"file\">Agrega imagen <\/label>";
+      strVar += "  <input type='file' id='getval' name=\"background-image\" onchange=\"readURL(event)\" \/><br\/><br\/>  ";
+      strVar += "    <\/form>";
+      strVar += "     <input type=\"text\" name=\"texto\" id=\"text1\" value=\"\" value=\"reset\">";
+      strVar += "       <button id=\"corr\" onclick=\"crearRecuadroCorrecto()\" >Recuadro correcto<\/button>";
+      strVar += "       <button id=\"incorr\" onclick=\"crearRecuadroIncorrecto()\" >Recuadro Incorrecto<\/button>";
+      strVar += "       <button id=\"crearImagen\" onclick=\"crearImagen()\" >Recuadro Arrastrable<\/button>";
+      strVar += " <label for=\"tamaño\">Seleciona el tamaño<\/label>";
+      strVar += "   <select name=\"tamaño\" id=\"size\">";
+      strVar += "     <option  value=\"chico\" selected >Chico<\/option>";
+      strVar += "     <option value=\"mediano\">Mediano<\/option>";
+      strVar += "     <option value=\"grande\">Grande<\/option>";
+      strVar += "       <\/select>";
+      strVar += "     <hr id=\"hr2\"  >";
+      strVar += "     <div id=\"divImg\" ><\/div>";
+      strVar += "     <div id=\"correcto\" ><\/div>";
+      strVar += "     <h2 id=\"correcto2\"  >Texto<\/h2>";
+      strVar += "     <div id=\"correcto3\" ><\/div>";
+      strVar += "     <hr id=\"hr3\" >";
+      strVar += "<\/div>";
+      strVar += "                <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+      strVar += "              <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
+      strVar += "                <\/div>";
+      
+      
+      insertor.insertAdjacentHTML("beforeend",strVar);
+        
+      }
+
+function preguntaRelacional(){
   var strVar="";
 strVar += "<div class=\"tipoR cuestionario\">";
 strVar += "                                  <div class=\"row\">";
@@ -202,6 +262,8 @@ strVar += "            <\/div>";
 
 insertor.insertAdjacentHTML("beforeend",strVar);
 }
+
+
 //función para crear más reactivos en preguntas relacionales
 function reactivoRelacional(obj){
       //Extración del Div donde se inyectará el nuevo reactivo
@@ -467,7 +529,6 @@ function envioPreguntaAbierta(){
     var i=0;
     //Rastreo del div por su clase, que define el tipo de pregunta
     var cuestionarios=document.getElementsByClassName("tipoT");
-    
     
     //Clasificación de los elementos enviados para no tener conflictos en la request
     for(i=0;i<cuestionarios.length;i++){
