@@ -139,61 +139,70 @@ function readURL(event){
       }
       });
   }
-  function crearRecuadroCorrecto(){
-    $( "#correcto2" ).draggable();
-    $( "#correcto2" ).draggable();
-    $( "#correcto2" ).css("color","red");
-    var texto = $("#text1").val();
-    $("#correcto2").text(texto);
-    }
 
-    function crearImagen(){
-      
-      $( "#correcto" ).draggable();
-      $( "#correcto" ).css("background-color","white");
-            if ($("#size").val()=="chico") {
-                $("#correcto").css({"width":"50","heigth":"90"});
-            }else if ($("#size").val()=="mediano"){
-                $("#correcto").css({"width":"90","heigth":"150"});
-            }else if ($("#size").val()=="grande"){
-                $("#correcto").css({"width":"150","heigth":"300"});
-            }
-            var strVar="";
-            strVar += " <div id=\"correcto\" ><\/div>";
-            insertor.insertAdjacentHTML( "afterbegin" , strVar);
-            console.log("correcto");
-            
+  function crearImagen(){
+    var btn = document.createElement("div");
+    btn.setAttribute("id","correcto");
+    btn.setAttribute("class","draggable");
+    hr3.appendChild(btn); 
+    console.log("correcto");
+    $( "#correcto" ).draggable({
+      stop: function() {
+        counts[ 2 ]++;
+        updateCounterStatus( $stop_counter, counts[ 2 ] );
+    }
+    });
+    $( "#correcto" ).css("background-color","white");
+    if ($("#size").val()=="chico") {
+        $("#correcto").css({"width":"50","heigth":"90"});
+    }else if ($("#size").val()=="mediano"){
+        $("#correcto").css({"width":"90","heigth":"150"});
+    }else if ($("#size").val()=="grande"){
+        $("#correcto").css({"width":"150","heigth":"300"});
+    }
+  }
+
+      function crearRecuadroCorrecto(){
+        $( "#correcto2" ).draggable();
+        $( "#correcto2" ).css("color","red");
+        var texto = $("#text1").val();
+        $("#correcto2").text(texto);
+        console.log("correcto")
       }
+
+  
+     
+            
+            
+      
 
       function preguntaArrastrar() {
         var strVar="";
-      strVar += "<div class=\"container cuestionario tipoA \" >";
-      strVar += "<label for=\"file\">Agrega imagen <\/label>";
-      strVar += " <input type='file' id='getval' name=\"background-image\" onchange=\"readURL(event)\" \/><br\/><br\/>  ";
-      strVar += " <\/form>";
-      strVar += " <input type=\"text\" name=\"texto\" id=\"text1\" value=\"\" placeholder=\"Texto\">";
-      strVar += " <button class=\"btn btn-info type=\"button\" id=\"corr\" onclick=\"crearRecuadroCorrecto()\" >Recuadro correcto<\/button>";
-      strVar += " <button class=\"btn btn-info \" type=\"button\" onclick=\"crearImagen()\">Añadir Cuadro Arrastrable<\/button>"
-      strVar += " <label for=\"tamaño\">Seleciona el tamaño<\/label>";
-      strVar += " <select name=\"tamaño\" id=\"size\">";
-      strVar += " <option  value=\"chico\" selected >Chico<\/option>";
-      strVar += " <option value=\"mediano\">Mediano<\/option>";
-      strVar += " <option value=\"grande\">Grande<\/option>";
-      strVar += " <\/select>";
-      strVar += " <hr id=\"hr2\"  >";
-      strVar += " <div id=\"divImg\" ><\/div>";
-      strVar += " <div id=\"correcto\" ><\/div>";
-      strVar += " <hr id=\"hr3\" >";
-      strVar += "     <div id=\"correcto3\" ><\/div>";
-      strVar += "     <h3 id=\"correcto2\">Texto</h3> ";
+      strVar += "<div class=\"container cuestionario tipoArr \" >";
+      strVar += " <label for=\"file\">Agrega imagen <\/label>";
+      strVar += "   <input type='file' id='getval' name=\"background-image\" onchange=\"readURL(event)\" \/><br\/><br\/>  ";
+      strVar += "   <input type=\"text\" name=\"texto\" id=\"text1\" value=\"\" placeholder=\"Texto\">";
+      strVar += "     <button class=\"btn btn-info\" type=\"button\" onclick=\"crearRecuadroCorrecto()\" >Recuadro correcto<\/button>";
+      strVar += "     <button class=\"btn btn-info\" type=\"button\" onclick=\"crearImagen()\">Añadir Cuadro Arrastrable<\/button>"
+      strVar += "    <label for=\"tamaño\">Seleciona el tamaño<\/label>";
+      strVar += "     <select name=\"tamaño\" id=\"size\">";
+      strVar += "       <option  value=\"chico\" selected >Chico<\/option>";
+      strVar += "       <option value=\"mediano\">Mediano<\/option>";
+      strVar += "       <option value=\"grande\">Grande<\/option>";
+      strVar += "     <\/select>";
+      strVar += "     <div> <h3> </h3>    <\/div>";
+      strVar += "       <hr id=\"hr2\"  >";
+      strVar += "       <div id=\"divImg\" ><\/div>";
+      strVar += "       <div id=\"correcto\" ><\/div>";
+      strVar += "         <hr id=\"hr3\" >";
+      strVar += "         <h3 id=\"correcto2\">Texto</h3> ";
+
       strVar += " <\/div>";
-      strVar += " <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
-      strVar += " <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
-      strVar += "      <\/div>";
-      
-      
+      strVar += "   <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+      strVar += "     <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
+      strVar += "   <\/div>";
       insertor.insertAdjacentHTML("beforeend",strVar);
-      console.log("correcto",console.error());
+      
         
       }
 
