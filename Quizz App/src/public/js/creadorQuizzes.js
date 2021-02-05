@@ -128,6 +128,22 @@ function preguntaAbierta(){
        
 } 
 
+// Color del Body//
+
+function colorido(){
+    var colores = document.getElementById("color");
+    var fondo = document.getElementsByClassName("examen");
+    if(colores.value=="1"){
+      fondo.backgroundColor = "#CE002B";
+    } else if (colores.value=="2"){
+      fondo.backgroundColor = "#C4A61C";
+    } else if (colores.value == "3"){
+      fondo.backgroundColor = "#A06600";
+    }
+  }
+
+
+
 //pregunta arrastrable//
 function readURL(event){
   var getImagePath = URL.createObjectURL(event.target.files[0]);
@@ -141,11 +157,7 @@ function readURL(event){
   }
 
   function crearImagen(){
-    var btn = document.createElement("div");
-    btn.setAttribute("id","correcto");
-    btn.setAttribute("class","draggable");
-    hr3.appendChild(btn); 
-    console.log("correcto");
+
     $( "#correcto" ).draggable({
       stop: function() {
         counts[ 2 ]++;
@@ -160,6 +172,12 @@ function readURL(event){
     }else if ($("#size").val()=="grande"){
         $("#correcto").css({"width":"150","heigth":"300"});
     }
+    var divc = document.createElement("div");
+    divc.id = "correcto";
+    divc.class = "container";
+    var imagen = document.getElementById("correcto2");
+    imagen.appendChild(divc);
+    console.log("correcto");
   }
 
       function crearRecuadroCorrecto(){
@@ -168,42 +186,44 @@ function readURL(event){
         var texto = $("#text1").val();
         $("#correcto2").text(texto);
         console.log("correcto")
+        strVar = "";
+        strVar += "<h2 id=\"correcto2\"  >Texto<\/h2>";
+        
       }
 
-  
-     
-            
-            
-      
-
       function preguntaArrastrar() {
-        var strVar="";
-      strVar += "<div class=\"container cuestionario tipoArr \" >";
-      strVar += " <label for=\"file\">Agrega imagen <\/label>";
-      strVar += "   <input type='file' id='getval' name=\"background-image\" onchange=\"readURL(event)\" \/><br\/><br\/>  ";
-      strVar += "   <input type=\"text\" name=\"texto\" id=\"text1\" value=\"\" placeholder=\"Texto\">";
-      strVar += "     <button class=\"btn btn-info\" type=\"button\" onclick=\"crearRecuadroCorrecto()\" >Recuadro correcto<\/button>";
-      strVar += "     <button class=\"btn btn-info\" type=\"button\" onclick=\"crearImagen()\">Añadir Cuadro Arrastrable<\/button>"
-      strVar += "    <label for=\"tamaño\">Seleciona el tamaño<\/label>";
-      strVar += "     <select name=\"tamaño\" id=\"size\">";
-      strVar += "       <option  value=\"chico\" selected >Chico<\/option>";
-      strVar += "       <option value=\"mediano\">Mediano<\/option>";
-      strVar += "       <option value=\"grande\">Grande<\/option>";
-      strVar += "     <\/select>";
-      strVar += "     <div> <h3> </h3>    <\/div>";
-      strVar += "       <hr id=\"hr2\"  >";
-      strVar += "       <div id=\"divImg\" ><\/div>";
-      strVar += "       <div id=\"correcto\" ><\/div>";
-      strVar += "         <hr id=\"hr3\" >";
-      strVar += "         <h3 id=\"correcto2\">Texto</h3> ";
-
-      strVar += " <\/div>";
-      strVar += "   <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
-      strVar += "     <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";
-      strVar += "   <\/div>";
-      insertor.insertAdjacentHTML("beforeend",strVar);
       
-        
+      var strVar="";
+      strVar += "<div id=\"divparent container-fluid \" >";
+      strVar += "    <div class=\"container\">";
+      strVar += "        <input type='file' id='getval' name=\"background-image\" onchange=\"readURL(event)\" \/><br\/><br\/>  ";
+      strVar += "          <input type=\"text\" name=\"texto\" id=\"text1\" value=\"\" value=\"reset\">";
+      strVar += "          <button class=\"btn btn-info\" type=\"button\" onclick=\"crearRecuadroCorrecto()\" >Recuadro correcto<\/button>";
+      strVar += "          <button class=\"btn btn-info\" type=\"button\" onclick=\"crearImagen()\">Añadir Cuadro Arrastrable<\/button>"
+      strVar += "          <label for=\"tamaño\">Seleciona el tamaño<\/label>";
+      strVar += "          <select name=\"tamaño\" id=\"size\">";
+      strVar += "          <option  value=\"chico\" selected>Chico<\/option>";
+      strVar += "          <option value=\"mediano\">Mediano<\/option>";
+      strVar += "          <option value=\"grande\">Grande<\/option>";
+      strVar += "          <\/select>";
+      strVar += "    <\/div>";
+      strVar += "      <div class=\"container\">";
+      strVar += "        <hr id=\"hr1\" >";
+      strVar += "        <hr id=\"hr2\"  >";
+      strVar += "        <div id=\"divImg\" >";
+      strVar += "        <\/div>";
+      strVar += "        <div id=\"correcto\" >";
+      strVar += "        <\/div>";
+      strVar += "        <h2 id=\"correcto2\"  >Texto<\/h2>";
+      strVar += "        <div id=\"correcto3\" >";
+      strVar += "        <\/div>";
+      strVar += "        <hr id=\"hr3\" >";
+      strVar += "     <button type=\"button\" class=\"btn btn-danger\" onclick=\"eliminar(this)\">Quitar Pregunta<\/button>";    
+      strVar += "      <\/div>";
+      strVar += "     <div class=\"editar\" role=\"group\" aria-label=\"Basic mixed styles example\">";
+      strVar += "  <\/div>";
+      insertor.insertAdjacentHTML("beforeend",strVar);
+          
       }
 
 

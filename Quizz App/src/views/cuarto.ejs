@@ -19,6 +19,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <style>
     img {
       width: 100%;
@@ -28,21 +30,37 @@
 </head>
 <body>
    
-    <div id="divparent" >
-            <form action="" id="form1"  method="get">
-                <input type="file" id="file-upload" accept="image/*">  
-            </form>
-            <textarea name="img" id="text1" cols="30" rows="1"></textarea>
-            <button id="arr" onclick="crearRecuadro()" >Recuadro</button>
-            <button id="imagenarr" onclick="crearImagen()" >Imagen</button>
-            <button id="btnbrr" onclick="borrar()" >Borrar</button>
-            <hr id="hr1" >
-            <hr id="hr2"  >
-            
-            <div id="file-preview-zone" ></div>
-            <button id="crearPreg"  >crear</button>
-            <button id="eliminarPregunta" onclick="eliminar(this)"  >eliminar</button>
+  <div id="divparent container-fluid " >
+    <div class="container">
+
+      <form action="" id="form1"  method="get">
+        <input type='file' id='getval' name="background-image" onchange="readURL(event)" /><br/><br/>  
+          </form>
+          <input type="text" name="texto" id="text1" value="" value="reset">
+          <button id="corr" onclick="crearRecuadroCorrecto()" >Recuadro correcto</button>
+          <button id="incorr" onclick="crearRecuadroIncorrecto()" >Recuadro Incorrecto</button>
+          <button id="crearImagen" onclick="crearImagen()" >Imagen</button>
+          <label for="tamaño">Seleciona el tamaño</label>
+          <select name="tamaño" id="size">
+          <option  value="chico" selected >Chico</option>
+          <option value="mediano">Mediano</option>
+          <option value="grande">Grande</option>
+          </select>
     </div>
+    <label for="input">Cuantos recuadros quieres crear</label>
+    <input type="number" name="i" id="texto" value="num[]">
+    <button onclick="crearDivs()" id="botones"  >crear</button>
+
+      <div class="container">
+        <hr id="hr1" >
+        <hr id="hr2"  >
+        <div id="divImg" ></div>
+        <div id="correcto"></div>
+        <h2 id="correcto2">Texto</h2>
+        <div id="correcto3"></div>
+        <hr id="hr3" >
+      </div>
+  </div>
 
     <div class="container col-lg-12">
         <div class="row">
@@ -80,9 +98,57 @@
             var parrafo = document.getElementById("parrafo");
             var div = document.getElementById("div1");
             var input = document.getElementById("drag");
-        function $(selector) {
-            return document.querySelector(selector) 
-        }
+
+           
+  
+
+       
+
+            function readURL(event){
+            var getImagePath = URL.createObjectURL(event.target.files[0]);
+            $('#divImg').css('background-image', 'url(' + getImagePath + ')');
+            $( "#divImg" ).droppable({
+                drop: function( event, ui ) {
+                $( this )
+                .addClass( "ui-state-highlight" );
+                
+                }
+                });
+            }
+            function crearRecuadroIncorrecto(){
+                $( "#correcto" ).draggable();
+                $( "#correcto" ).css("background-color","red");
+            }
+
+            function crearRecuadroCorrecto(){
+            $( "#correcto2" ).draggable();
+            $( "#correcto2" ).css("color","red");
+            var texto = $("#text1").val();
+            $("#correcto2").text(texto);
+        
+            }
+
+
+        function crearImagen(){
+
+            var $stop_counter = $( "#event-stop" )
+            $( "#correcto" ).draggable({
+                stop: function() {
+                counts[ 2 ]++;
+                updateCounterStatus( $stop_counter, counts[ 2 ] );
+            }
+            
+            });
+            $( "#correcto" ).css("background-color","white");
+            if ($("#size").val()=="chico") {
+                $("#correcto").css({"width":"50","heigth":"90"});
+            }else if ($("#size").val()=="mediano"){
+                $("#correcto").css({"width":"90","heigth":"150"});
+            }else if ($("#size").val()=="grande"){
+                $("#correcto").css({"width":"150","heigth":"300"});
+            }
+            
+            }
         $("#crearPreg").addEventListener("click", ()=>{
             var div = document.createElement("div");
             div.id = 'divparent';
@@ -125,10 +191,7 @@
             console.log(hr1)
 
         })
-        function eliminar(obj){
-            obj.remove();
-
-        }
+        
         function readFile(input){
             if(input.files && input.files[0]){
                 var reader = new FileReader();
